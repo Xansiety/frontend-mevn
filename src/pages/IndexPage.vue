@@ -7,7 +7,7 @@ const userStore = useUserStore();
 const { token, expiresIn } = storeToRefs(userStore);
 const { onLogin, refreshToken, logOut } = userStore;
 
-refreshToken();
+// refreshToken();
 
 const crearLink = async () => {
   try {
@@ -30,10 +30,7 @@ const crearLink = async () => {
 
 <template>
   <q-page padding>
-    <q-btn @click="onLogin"> Ingresar </q-btn>
     <q-btn @click="crearLink"> Crear link </q-btn>
-    <q-btn @click="logOut"> Salir </q-btn>
-
     {{ token }} -----
     {{ expiresIn }}
   </q-page>
