@@ -6,11 +6,14 @@ export const useUserStore = defineStore("user", () => {
   const token = ref(null);
   const expiresIn = ref(null);
 
-  const onLogin = async () => {
+  // email: "ferando543@outlook.com",
+  // password: "!Abc123",
+  const onLogin = async ({ email, password }) => {
+    console.log({ email, password });
     try {
       const response = await api.post("/auth/login", {
-        email: "ferando543@outlook.com",
-        password: "!Abc123",
+        email,
+        password,
       });
       token.value = response.data.token;
       expiresIn.value = response.data.expiresIn;

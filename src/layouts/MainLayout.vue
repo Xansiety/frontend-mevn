@@ -13,7 +13,7 @@
 
         <q-toolbar-title> Quasar App </q-toolbar-title>
 
-        <q-btn color="green" @click="onLogin" v-if="!userStore.token"
+        <q-btn color="green" :to="{ name: 'login' }" v-if="!userStore.token"
           >Login</q-btn
         >
         <q-btn color="dark" :to="{ name: 'home' }" v-if="userStore.token"
