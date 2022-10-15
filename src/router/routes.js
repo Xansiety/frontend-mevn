@@ -4,23 +4,28 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
     children: [
       {
-        path: "login",
+        path: "/login",
         name: "login",
         component: () => import("pages/LoginPage.vue"),
       },
       {
-        path: "",
-        name: "Home",
+        path: "/home",
+        name: "home",
+        meta: {
+          auth: true,
+        },
         component: () => import("pages/IndexPage.vue"),
       },
       {
-        path: "protected",
+        path: "/protected",
         name: "protected",
+        meta: {
+          auth: true,
+        },
         component: () => import("pages/ProtectedPage.vue"),
       },
     ],
   },
-
   // Always leave this as last one,
   // but you can also remove it
   {

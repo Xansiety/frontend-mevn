@@ -13,9 +13,9 @@ const ModificarToken = () => {
 
 <template>
   <h1>Login Page</h1>
-  <p>{{ userStore.token }}</p>
+  <!-- <p>{{ userStore.token }}</p> -->
 
-  <button @click="ModificarToken">Modificar token</button>
+  <!-- <button @click="ModificarToken">Modificar token</button> -->
 </template>
 
 <style lang="scss" scoped></style>

@@ -14,6 +14,7 @@ export const useUserStore = defineStore("user", () => {
       });
       token.value = response.data.token;
       expiresIn.value = response.data.expiresIn;
+      sessionStorage.setItem("user", true);
       setTime();
     } catch (error) {
       console.log(error);
@@ -35,9 +36,11 @@ export const useUserStore = defineStore("user", () => {
       token.value = resp.data.token;
       expiresIn.value = resp.data.expiresIn;
       setTime();
+      sessionStorage.setItem("user", true);
       console.log("On refresh Token ⚡", token.value);
     } catch (error) {
       console.log(error);
+      sessionStorage.removeItem("user");
     }
   };
 
@@ -48,6 +51,7 @@ export const useUserStore = defineStore("user", () => {
       console.log(error);
     } finally {
       resetStore();
+      sessionStorage.removeItem("user");
     }
   };
 
