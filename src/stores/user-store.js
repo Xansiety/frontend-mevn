@@ -9,7 +9,7 @@ export const useUserStore = defineStore("user", () => {
   // email: "ferando543@outlook.com",
   // password: "!Abc123",
   const onLogin = async ({ email, password }) => {
-    console.log({ email, password });
+    // console.log({ email, password });
     try {
       const response = await api.post("/auth/login", {
         email,
@@ -20,7 +20,58 @@ export const useUserStore = defineStore("user", () => {
       sessionStorage.setItem("user", true);
       setTime();
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        // console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
+        throw error.response.data;
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+      // console.log(error.config);
+      throw error;
+    }
+  };
+
+  const onRegister = async ({ email, password, rePassword }) => {
+    // console.log({ email, password });
+    try {
+      const response = await api.post("/auth/register", {
+        email,
+        password,
+        rePassword,
+      });
+      token.value = response.data.token;
+      expiresIn.value = response.data.expiresIn;
+      sessionStorage.setItem("user", true);
+      setTime();
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        // console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
+        throw error.response.data;
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+      // console.log(error.config);
+      throw error;
     }
   };
 
@@ -69,5 +120,6 @@ export const useUserStore = defineStore("user", () => {
     onLogin,
     refreshToken,
     logOut,
+    onRegister,
   };
 });

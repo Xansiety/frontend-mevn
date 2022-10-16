@@ -16,6 +16,9 @@
         <q-btn color="green" :to="{ name: 'login' }" v-if="!userStore.token"
           >Login</q-btn
         >
+        <q-btn color="dark" :to="{ name: 'register' }" v-if="!userStore.token"
+          >Registro</q-btn
+        >
         <q-btn color="dark" :to="{ name: 'home' }" v-if="userStore.token"
           >Inicio</q-btn
         >

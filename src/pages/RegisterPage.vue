@@ -1,7 +1,6 @@
 <script setup>
 import { useUserStore } from "../stores/user-store";
 import { ref } from "vue";
-import { storeToRefs } from "pinia";
 import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
 
@@ -10,19 +9,14 @@ const router = useRouter();
 const userStore = useUserStore();
 const $q = useQuasar();
 const formData = ref({
-  email: "ferando543@outlook.com",
+  email: "ferando543@test.com",
   password: "!Abc123",
+  rePassword: "!Abc123",
 });
-
-// para desestruturar y mantener reactividad
-const { token } = storeToRefs(userStore);
-const ModificarToken = () => {
-  token.value = "Modificado";
-};
 
 const onSubmit = async () => {
   try {
-    await userStore.onLogin(formData.value);
+    await userStore.onRegister(formData.value);
     router.push({ name: "home" }); // todo fue correcto lo mandamos a inicio
     formData.value.email = "";
     formData.value.password = "";
@@ -51,11 +45,9 @@ const alertDialogBackend = (
 </script>
 
 <template>
-  <!-- <p>{{ userStore.token }}</p> -->
-  <!-- <button @click="ModificarToken">Modificar token</button> -->
   <q-page padding class="row justify-center">
     <div class="col-12 col-sm-6 col-md-5">
-      <h3>Login</h3>
+      <h3>Registro usuario</h3>
       <q-form @submit.prevent="onSubmit" class="q-gutter-md">
         <q-input
           v-model="formData.email"
@@ -79,6 +71,17 @@ const alertDialogBackend = (
           ]"
         />
 
+        <q-input
+          v-model="formData.rePassword"
+          type="password"
+          label="Repetir Contraseña"
+          :rules="[
+            (val) =>
+              (val && val === formData.password) ||
+              'Las contraseñas no coinciden',
+          ]"
+        />
+
         <div>
           <q-btn type="submit" label="Ingresar" color="primary" />
           <q-btn
@@ -93,5 +96,4 @@ const alertDialogBackend = (
     </div>
   </q-page>
 </template>
-
 <style lang="scss" scoped></style>
