@@ -13,20 +13,34 @@
 
         <q-toolbar-title> Quasar App </q-toolbar-title>
 
-        <q-btn color="green" :to="{ name: 'login' }" v-if="!userStore.token"
+        <q-btn
+          color="green"
+          :to="{ name: 'login' }"
+          v-if="!userStore.token"
+          class="q-mr-sm"
           >Login</q-btn
         >
         <q-btn color="dark" :to="{ name: 'register' }" v-if="!userStore.token"
           >Registro</q-btn
         >
-        <q-btn color="dark" :to="{ name: 'home' }" v-if="userStore.token"
+        <q-btn
+          color="dark q-mr-sm"
+          :to="{ name: 'home' }"
+          v-if="userStore.token"
+          class="q-mr-sm"
           >Inicio</q-btn
         >
-        <q-btn color="orange" :to="{ name: 'protected' }" v-if="userStore.token"
+        <q-btn
+          color="orange q-mr-sm"
+          :to="{ name: 'protected' }"
+          v-if="userStore.token"
+          class="q-mr-sm"
           >Protected</q-btn
         >
 
-        <q-btn color="red" @click="logOut" v-if="userStore.token">LogOut</q-btn>
+        <q-btn color="red q-mr-sm" @click="logOut" v-if="userStore.token"
+          >LogOut</q-btn
+        >
       </q-toolbar>
     </q-header>
 
