@@ -7,12 +7,12 @@ const urlStore = useUrlStore();
 
 <template>
   <q-page padding>
-    <AddLink />
+    <AddLink class="q-mb-md" />
 
     <template v-for="link in urlStore.links" :key="link._id">
-      <LinkCard />
+      <LinkCard :link="link" />
     </template>
 
-    <pre>{{ urlStore.links }}</pre>
+    <!-- <pre>{{ urlStore.links }}</pre> -->
   </q-page>
 </template>
