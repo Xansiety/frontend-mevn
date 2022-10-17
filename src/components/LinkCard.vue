@@ -75,6 +75,17 @@ const editLink = (link) => {
       console.log(">>>> Cancel");
     });
 };
+
+const copyLink = async (nanoLink) => {
+  try {
+    const path = `http://localhost:9000/${nanoLink}`;
+    await navigator.clipboard.writeText(path);
+    showNotify("Copiado en el portapapeles", "green");
+  } catch (error) {
+    console.log(error);
+    showNotify(error);
+  }
+};
 </script>
 
 <template>
@@ -100,7 +111,9 @@ const editLink = (link) => {
         color="primary"
         @click="editLink(link)"
       ></q-btn>
-      <q-btn flat color="positive"> Copy </q-btn>
+      <q-btn flat color="positive" @click="copyLink(link.nanoLink)">
+        Copy
+      </q-btn>
     </q-card-actions>
   </q-card>
 </template>
