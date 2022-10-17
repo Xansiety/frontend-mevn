@@ -10,7 +10,7 @@
 
 const { configure } = require("quasar/wrappers");
 
-module.exports = configure(function (/* ctx */) {
+module.exports = configure(function (ctx) {
   return {
     eslint: {
       // fix: true,
@@ -62,7 +62,14 @@ module.exports = configure(function (/* ctx */) {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        FRONT_URI: ctx.dev ? "http://localhost:9000" : "https://prod.api.com",
+        // FRONT_URI: "http://localhost:9000",
+        // MY_API_REST: "",
+        MY_API_REST: ctx.dev
+          ? "http://localhost:8080/api/v1"
+          : "https://node-rest-api-jwt-refresh-xans.herokuapp.com/api/v1",
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,

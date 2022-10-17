@@ -78,7 +78,7 @@ const editLink = (link) => {
 
 const copyLink = async (nanoLink) => {
   try {
-    const path = `http://localhost:9000/${nanoLink}`;
+    const path = `${process.env.FRONT_URI}/${nanoLink}`;
     await navigator.clipboard.writeText(path);
     showNotify("Copiado en el portapapeles", "green");
   } catch (error) {
