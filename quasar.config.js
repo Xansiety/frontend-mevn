@@ -69,6 +69,9 @@ module.exports = configure(function (ctx) {
         MY_API_REST: ctx.dev
           ? "http://localhost:8080/api/v1"
           : "https://node-rest-api-jwt-refresh-xans.herokuapp.com/api/v1",
+        MY_REDIRECT_DOMAIN: ctx.dev
+          ? "http://localhost:8080"
+          : "https://node-rest-api-jwt-refresh-xans.herokuapp.com",
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
