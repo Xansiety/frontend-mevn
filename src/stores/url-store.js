@@ -31,7 +31,7 @@ export const useUrlStore = defineStore("url", () => {
   };
 
   const getAllLinks = async () => {
-    console.log("Llamando a todos los links");
+    // console.log("Llamando a todos los links");
     try {
       $q.loading.show();
       const resp = await api({
