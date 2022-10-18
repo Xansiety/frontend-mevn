@@ -79,7 +79,7 @@ export const useUserStore = defineStore("user", () => {
   const setTime = () => {
     clearTimeout();
     setTimeout(() => {
-      console.log("On Refresh Token ⚡⚡⚡");
+      // console.log("On Refresh Token ⚡⚡⚡");
       refreshToken();
     }, expiresIn.value * 1000 - 6000); // 6 segundos antes de que expire el token
   };
