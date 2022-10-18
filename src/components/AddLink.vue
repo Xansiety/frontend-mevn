@@ -7,6 +7,7 @@ const { crearLink } = urlStore;
 const { showNotify } = useNotify();
 
 // Data
+const myForm = ref(null);
 const link = ref("");
 const loading = ref(false);
 
@@ -18,6 +19,7 @@ const handleAddLink = async () => {
     await crearLink(link.value);
     showNotify("Link agregado correctamente", "green");
     link.value = "";
+    myForm.value.resetValidation();
   } catch (error) {
     console.log("cath", error);
 
@@ -36,8 +38,14 @@ const handleAddLink = async () => {
 </script>
 
 <template>
-  <q-form @submit.prevent="handleAddLink" class="q-gutter-md">
-    <q-input v-model.trim="link" type="text" label="Ingrese URL" />
+  <q-form @submit.prevent="handleAddLink" class="q-gutter-md" ref="myForm">
+    <q-input
+      v-model.trim="link"
+      type="text"
+      label="Ingrese URL"
+      :rules="[(val) => (val && val.trim() !== '') || 'Escribe algo por favor']"
+      lazy-rules
+    />
 
     <div>
       <q-btn
@@ -46,9 +54,6 @@ const handleAddLink = async () => {
         type="submit"
         color="primary"
         :loading="loading"
-        :rules="[
-          (val) => (val && val.trim() !== '') || 'Escribe algo por favor',
-        ]"
       />
     </div>
   </q-form>

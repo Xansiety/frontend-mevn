@@ -7,6 +7,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const userStore = useUserStore();
+const myForm = ref(null);
 const $q = useQuasar();
 const formData = ref({
   email: "ferando543@test.com",
@@ -20,6 +21,7 @@ const onSubmit = async () => {
     router.push({ name: "home" }); // todo fue correcto lo mandamos a inicio
     formData.value.email = "";
     formData.value.password = "";
+    myForm.value.resetValidation();
   } catch (error) {
     // console.log("ERROR CATCH", error);
     if (error.errors) {
@@ -48,7 +50,7 @@ const alertDialogBackend = (
   <q-page padding class="row justify-center">
     <div class="col-12 col-sm-6 col-md-5">
       <h3>Registro usuario</h3>
-      <q-form @submit.prevent="onSubmit" class="q-gutter-md">
+      <q-form @submit.prevent="onSubmit" class="q-gutter-md" ref="myForm">
         <q-input
           v-model="formData.email"
           type="text"
@@ -59,6 +61,7 @@ const alertDialogBackend = (
               (val && /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/.test(val)) ||
               'Formato email incorrecto',
           ]"
+          lazy-rules
         />
         <q-input
           v-model="formData.password"
@@ -69,6 +72,7 @@ const alertDialogBackend = (
               (val && val.length > 5) ||
               'Por favor escriba su contraseña minimo 6 caracteres',
           ]"
+          lazy-rules
         />
 
         <q-input
@@ -80,6 +84,7 @@ const alertDialogBackend = (
               (val && val === formData.password) ||
               'Las contraseñas no coinciden',
           ]"
+          lazy-rules
         />
 
         <div>
