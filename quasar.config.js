@@ -65,7 +65,7 @@ module.exports = configure(function (ctx) {
       env: {
         FRONT_URI: ctx.dev
           ? "http://localhost:9000"
-          : "https://quasar-mevn-xansiety.netlify.app",
+          : "https://quasar-mevn-xansiety.netlify",
         // FRONT_URI: "http://localhost:9000",
         // MY_API_REST: "",
         MY_API_REST: ctx.dev
@@ -73,7 +73,7 @@ module.exports = configure(function (ctx) {
           : "https://node-rest-api-jwt-refresh-xans.herokuapp.com/api/v1",
         MY_REDIRECT_DOMAIN: ctx.dev
           ? "http://localhost:8080"
-          : "https://quasar-mevn-xansiety.netlify.app",
+          : "https://quasar-mevn-xansiety.netlify",
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
