@@ -91,7 +91,7 @@ export const useUserStore = defineStore("user", () => {
       expiresIn.value = resp.data.expiresIn;
       setTime();
       sessionStorage.setItem("user", true);
-      console.log("On refresh Token ⚡", token.value);
+      // console.log("On refresh Token ⚡", token.value);
     } catch (error) {
       console.log(error);
       sessionStorage.removeItem("user");
